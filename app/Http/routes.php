@@ -18,4 +18,5 @@ Route::get("articles", "ArticlesController@index");
 // Specfic routes should come first
 Route::get("articles/create", "ArticlesController@create");
 Route::get("articles/{id}", "ArticlesController@show");
+Route::post("articles", "ArticlesController@store");
 Route::get("tasks", "TasksController@index");
