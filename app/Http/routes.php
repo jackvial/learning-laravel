@@ -14,3 +14,8 @@ Route::get("/", "WelcomeController@index");
 Route::get("about", "PagesController@about");
 Route::get("contact", "PagesController@contact");
 Route::get("articles", "ArticlesController@index");
+
+// Specfic routes should come first
+Route::get("articles/create", "ArticlesController@create");
+Route::get("articles/{id}", "ArticlesController@show");
+Route::get("tasks", "TasksController@index");
