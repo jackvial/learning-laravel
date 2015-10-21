@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Request;
 
 class ArticlesController extends Controller
 {
     public function index(){
-    	$articles = Article::all();
+    	$articles = Article::latest('published_at')->published()->get();
     	return view('articles.index')->with('articles', $articles);
     }
 
     public function show($id){
     	$article = Article::findOrFail($id);
-    	//dd($article);
+    	dd($article->published_at);
     	return view('articles.show')->with('article', $article);
     }
 
@@ -26,8 +27,8 @@ class ArticlesController extends Controller
 
     public function store(){
 
-    	// Fetch all input
-    	$input = Request::all();
-    	return $input;
+    	// Write to database
+    	Article::create(Request::all());
+    	return redirect('articles');
     }
 }
