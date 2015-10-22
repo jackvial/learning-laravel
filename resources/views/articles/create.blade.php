@@ -19,4 +19,12 @@
 		{!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
 	</div>
 {!! Form::close() !!}
+
+@if($errors->any())
+	<ul class="alert alert-danger">
+		@foreach($errors->all() as $error)
+			<li>{{$error}}</li>
+		@endforeach
+	</ul>
+@endif
 @stop
