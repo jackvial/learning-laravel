@@ -33,8 +33,8 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request){
 
-    	// Write to database
-    	Article::create($request->all());
+        $article = new Article($request->all());
+        \Auth::user()->articles()->save($article);
     	return redirect('articles');
     }
 

@@ -11,7 +11,8 @@ class Article extends Model
     protected $fillable = [
     	'title',
     	'body',
-    	'published_at'
+    	'published_at',
+        'user_id' // temp!
     ];
 
     // Mutate to carbon instance
@@ -25,8 +26,14 @@ class Article extends Model
     	$query->where('published_at', '>', Carbon::now());
     }
 
-
     public function setPublishedAtAttribute($date){
     	$this->attributes['published_at'] = Carbon::parse($date);
+    }
+
+    /**
+     * An article is owned by a user
+     */
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 }
